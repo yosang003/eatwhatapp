@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <script src="js/mui.min.js"></script>
+    <link href="css/mui.min.css" rel="stylesheet"/>
+    <style>
+		body{
+    		background-color: #ffdad6;
+    		font-family: "微软雅黑";
+    		font-size: 62.5%;
+    	}
+    	.mui-bar-nav{
+    		background-color: #f37564;
+    	}
+    	.mui-content{
+    		margin:0 auto;
+    		width: 20rem;
+    		min-height: 20rem;
+    		background-color: #feeeec;
+    		border: 1px solid gray;
+    	}
+		ul.func li{
+			width: 3rem;
+			height: 1.5rem;
+			text-align: center;
+			background-color: #ede2e0;
+			display: inline-block;
+		}
+		span.username{
+			margin-top: 2rem;
+			margin-right: 10rem;
+		}
+		img.portrait{
+    		margin-left: .5rem;
+			width: 2rem;
+			height: 2rem;
+			border-radius: 50%;
+		}
+		img.food{
+			margin:0 1rem ;
+			width: 10rem;
+			height: 8rem;
+		}
+.remarkBox{
+	margin: .2rem auto;
+	width: 90%;
+	height: 3rem;
+	border: dashed;
+}
+.allremark{
+	width: 100%;
+	height: 9rem;
+	border: dashed;
+}
+.allremarkBox{
+	border: 1px palevioletred dashed;
+}
+ul.markfunc{
+	margin-top: -1rem;
+}
+ul.markfunc li{
+	display: inline-block;
+}
+img.portrait{
+	width: 5rem;
+	height: 5rem;
+	border-radius: 50%;
+}
+.marktime{
+	margin-top: -3.3rem;
+	margin-right: .4rem;
+}
+.spanContain span{
+	margin-left: 2rem;
+	
+}
+p.rcontent{
+	margin-left: .8rem;
+}
+p.descrip{
+	margin-left:  .8rem;
+}
+    </style>
+    <script type="text/javascript" charset="utf-8">
+      	mui.init();
+    </script>
+</head>
+<body>
+
+		<div class="mui-content">
+			<img class="portrait" src="img/portrait.jpg"/>
+			<span class="username mui-pull-right">baibai</span>
+			<br />
+			<p class="spanContain">
+			<span class="time">2015-9-14</span>
+			<span class="hot">热度</span>
+			<span class="tag">标签</span>
+			</p>
+			
+			<p class="descrip">这个东西真好吃</p>
+				<img class="food" src="img/food.jpg"/>
+				<ul class="func">
+					<li><a href="#">点赞</a></li>
+					<li><a href="#">吐槽</a></li>
+					<li><a href="#">关注</a></li>
+					<li><a href="#">收藏</a></li>
+				</ul>
+				
+			
+									
+									<input type="textarea" class="remarkBox" placeholder="你想说什么">
+								
+				
+				<div class="allremark">
+					<div class="allremarkBox">
+					<img class="portrait" src="img/portrait.jpg"/>
+					
+						<span class="username mui-pull-right">用户名</span>
+					<span class="marktime mui-pull-right">评论时间</span>
+					
+					
+					<p class="rcontent">我也觉得</p>
+					
+					<ul class="markfunc mui-pull-right">
+						<li><a href="#">点赞数</a><span class="complits">1</span></li>
+						<li><a href="#">回复</a></li>
+					</ul>
+					</div>
+					
+				</div>
+				
+		</div>
+	
+</body>
+</html>

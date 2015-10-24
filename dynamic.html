@@ -4,17 +4,97 @@
 	<meta charset="UTF-8" />
 	<title></title>
 	<link rel="stylesheet" href="css/mui.min.css" />
+	<style>
+    	body{
+    		background-color: #ffdad6;
+    		font-family: "微软雅黑";
+    		font-size: 62.5%;
+    	}
+    	.mui-bar-nav{
+    		background-color: #f37564;
+    	}
+    	.mui-content{
+    		margin:0 auto;
+    		width: 20rem;
+    		min-height: 20rem;
+    		background-color: #feeeec;
+    		border: 1px dashed gray;
+    	}
+    	p.store{
+    		margin: .3rem 1rem;
+    	}
+    	p.descrip{
+    		margin-left: 4rem;
+    	}
+    	img.portrait{
+    		margin-left: .9rem;
+			width: 3rem;
+			height: 3rem;
+			border-radius: 50%;
+		}
+		img.food{
+			margin:0 2.3rem ;
+			width: 10rem;
+			height: 8rem;
+		}
+		span.date{
+			margin-left: 4rem;
+		}
+		.namedContain{
+			margin-top: .6rem;
+			margin-right: 5rem;
+			overflow: hidden;
+		}
+		.dynamic{
+			padding-top: 2rem;
+			padding-bottom: 2rem;
+			border-top: 1rem solid #ffdad6;
+		}
+    </style>
+    <script src="js/template.js"></script>
 <body>
 	<div class="mui-content">
-		<ul id="dynamicPage">
-			<li>这个是动态页哟！</li>
-		</ul>
+			<div class="dynamic">
+				<p class="store">私人蛋糕烘焙</p>
+				<img class="portrait" src="img/portrait.jpg"/>
+				<p class="namedContain mui-pull-right">
+					<span class="username">哟桑</span>
+				<span class="date ">2015-7-22</span>
+				</p>
+				
+				<p class="descrip">这个东西真好吃</p>
+				<img class="food" src="img/food.jpg"/>
+			</div>
 			
-	</div>
+			<div class="dynamic">
+				<p class="store">私人蛋糕烘焙</p>
+				<img class="portrait" src="img/portrait2.jpg"/>
+				<p class="namedContain mui-pull-right">
+					<span class="username">cici</span>
+				<span class="date ">2015-10-22</span>
+				</p>
+				
+				<p class="descrip">她家东西超赞</p>
+				<img class="food" src="img/food2.jpg"/>
+			</div>
+			<div class="dynamic">
+				<p class="store">私人蛋糕烘焙</p>
+				<img class="portrait" src="img/portrait.jpg"/>
+				<p class="namedContain mui-pull-right">
+					<span class="username">哟桑</span>
+				<span class="date ">2015-7-22</span>
+				</p>
+				
+				<p class="descrip">这个东西真好吃</p>
+				<img class="food" src="img/food.jpg"/>
+			</div>
+		</div>
 </body>
 <script type="text/javascript" src="js/mui.min.js"></script>
 <script type="text/javascript">
-	        var index = null; //主页面
+
+
+			       var index = null; //主页面
 			function openMenu() {
 				//获取当前Webview窗口的父窗口
 				!index && (index = mui.currentWebview.parent());
@@ -28,5 +108,33 @@
 					openMenu();
 				}
 			});
+			
+	 
+			mui.plusReady(function(){
+				/*mui.init({
+			  preloadPages:[
+			    {
+			      url:'detail.html',
+			      id:'detail'
+			  
+			    }
+			  ]
+			});*/
+ var subpages='detail.html';
+    var subpage_style={
+    	top:'45px',
+    	bottom:'51px'
+    };
+    var sub=plus.webview.create(subpages,subpages,subpage_style);
+   sub.hide();
+mui(".mui-content").on("tap",".dynamic",function(){
+			
+			
+				plus.webview.show(subpages,'fade-in',300);
+			})
+
+			})
+			
+			
 </script>
 </html>

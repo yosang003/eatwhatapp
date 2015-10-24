@@ -6,9 +6,50 @@
     <title></title>
     <link href="css/mui.min.css" rel="stylesheet"/>
     <style>
-    	.mui-bar-nav{
-    		background-color: #D74B28;
+    	body{
+    		background-color: #ffdad6;
+    		font-family: "微软雅黑";
+    		font-size: 62.5%;
     	}
+    	.mui-bar-nav{
+    		background-color: #f37564;
+    	}
+    	.mui-content{
+    		margin:0 auto;
+    		width: 20rem;
+    		min-height: 20rem;
+    		background-color: #feeeec;
+    		border: 1px solid gray;
+    	}
+    	p.store{
+    		margin: .3rem .6rem;
+    	}
+    	p.descrip{
+    		margin-left: 3rem;
+    	}
+    	img.portrait{
+    		margin-left: .5rem;
+			width: 3rem;
+			height: 3rem;
+			border-radius: 50%;
+		}
+		img.food{
+			margin:0 1rem ;
+			width: 10rem;
+			height: 8rem;
+		}
+		span.date{
+			margin-left: 4rem;
+		}
+		.namedContain{
+			margin-top: .6rem;
+			margin-right: 5rem;
+			overflow: hidden;
+		}
+		.dynamic{
+			padding-bottom: .5rem;
+			border-bottom: .1rem solid #ede2e0;
+		}
     </style>
 </head>
 <body>
@@ -17,6 +58,8 @@
 			  <a class="mui-icon mui-icon-compose mui-pull-right" id="fabiao"></a>
 			  <h1 class="mui-title">吃啥哟</h1>
 			</header>
+		
+			
 			<nav class="mui-bar mui-bar-tab">
 				<a class="mui-tab-item" href="message.html">
 					<span class="mui-icon mui-icon-email"><span class="mui-badge">2</span></span>
@@ -214,7 +257,7 @@
 			
 			//发表
 			document.getElementById('fabiao').addEventListener('tap', function() {
-				var fabiao=plus.webview.getWebviewById("fabiao.html");
+					var fabiao=plus.webview.getWebviewById("fabiao.html");
 				fabiao.show('none');
 			})
 	</script>

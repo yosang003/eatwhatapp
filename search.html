@@ -2,11 +2,77 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<title></title>
+		 <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+     <link href="css/mui.min.css" rel="stylesheet"/>
+    <style>
+    	body{
+    		background-color: #ffdad6;
+    		font-family: "微软雅黑";
+    		font-size: 62.5%;
+    	}
+    	.hide{
+    		display: none;
+    	}
+    	.mui-bar-nav{
+    		background-color: #f37564;
+    	}
+    	.mui-content{
+    		margin:0 auto;
+    		width: 20rem;
+    		min-height: 20rem;
+    		background-color: #feeeec;
+    		border: 1px solid gray;
+    	}
+    	input.searchBar{
+    		
+    		width: 10rem;
+    		background-color: #feeeec;
+    		outline: none;
+    		border: none;
+    		border-bottom: 1px solid #d8cdcf;
+    	}
+    	label{
+    		margin-left: 2rem;
+    	}
+    	.tagContain{
+    		margin-left: 5rem;
+    		width: 10rem;
+    		height: 5rem;
+    		border: 1px solid pink;
+    	}
+    	.hide{
+    		display: none;
+    	}
+    </style>
+    <script src="js/mui.min.js"></script>
+   
 	</head>
 	<body>
+		
 		<div class="mui-content">
-			这个是搜索页，啦啦啦！
+			<label>重邮</label>
+			<input type="text" class="searchBar allFood"/>
+			<span class="mui-icon mui-icon-search"></span>
+			<br />
+			
+			<label>标签搜索</label>
+			<input type="text" class="searchBar " id="tagFood"/>
+			<span class="mui-icon mui-icon-paperplane"></span>
+				<br />
+				<div class="tagContain hide"></div>
+			<label>榜单推荐</label>
+			<input type="text" class="searchBar topFood"/>
+			<span class="mui-icon mui-icon-paperplane"></span>
+			<br />
+			<label>吃货推荐</label>
+			<input type="text" class="searchBar peopleFood"/>
+			<span class="mui-icon mui-icon-paperplane"></span>
+			<br />
+			<label>附近推荐</label>
+			<input type="text" class="searchBar nearFood"/>
+			<span class="mui-icon mui-icon-paperplane"></span>
 		</div>
+
 	</body>
 </html>
