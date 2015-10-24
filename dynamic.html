@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title></title>
+	<link rel="stylesheet" href="css/mui.min.css" />
+<body>
+	<div class="mui-content">
+		<ul id="dynamicPage">
+			<li>这个是动态页哟！</li>
+		</ul>
+			
+	</div>
+</body>
+<script type="text/javascript" src="js/mui.min.js"></script>
+<script type="text/javascript">
+	        var index = null; //主页面
+			function openMenu() {
+				//获取当前Webview窗口的父窗口
+				!index && (index = mui.currentWebview.parent());
+				//触发index页的"menu:open事件"
+				mui.fire(index, "menu:open");
+			}
+			window.addEventListener("swiperight", function(e) {
+				//默认滑动角度在-45度到45度之间，都会触发右滑菜单，为避免误操作，可自定义限制滑动角度；
+				//如何自定义滑动角度
+				if (Math.abs(e.detail.angle) < 4) {
+					openMenu();
+				}
+			});
+</script>
+</html>

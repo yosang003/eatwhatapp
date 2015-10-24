@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>Hello MUI</title>
+		<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+		<link rel="stylesheet" href="css/mui.min.css">
+		<style>
+			body, .mui-content {
+				background-color: #fff;
+				color: #7B7777;
+			}
+		
+			.mui-content .content{
+				width: 100%;
+				height:200px;
+				background-color: #D74B28;
+				text-align: center;
+			}
+		    .mui-table-view-cell:after,.mui-table-view:after{
+		    	background-color: #fff;
+		    }
+			  .userPic{
+			  	width: 100px;
+			  	height: 100px;
+			  	margin-top: 20px;;
+			  	/*border:1px solid #333333;*/
+			  	border-radius: 50px;
+			  }
+		</style>
+	</head>
+	<body>
+		<div class="mui-content">
+				<div class="content">
+					<div class="contentUser">
+						<img class="userPic" src="img/1.jpg" />
+						<p>哟桑</p>
+						<p>我是一个吃货啦啦啦！</p>
+					</div>
+				</div>
+				<ul class="mui-table-view mui-table-view-chevron">
+					<li class="mui-table-view-cell">
+						<a class="mui-navigate-right" open-type="common" href="index.html">
+							<span class="mui-icon mui-icon-home"></span>
+							首页
+						</a>
+					</li>
+					<li class="mui-table-view-cell">
+						<a class="mui-navigate-right" href="userInfor.html" open-type="common">
+							<span class="mui-icon mui-icon-person"></span>
+							用户信息
+						</a>
+					</li>
+					<li class="mui-table-view-cell">
+						<a class="mui-navigate-right" href="setting.html" open-type="common">
+							<span class="mui-icon mui-icon-gear"></span>
+							设置
+						</a>
+					</li>
+					<li class="mui-table-view-cell">
+						<a class="mui-navigate-right">
+							<span class="mui-icon mui-icon-star"></span>
+							我的收藏
+						</a>
+					</li>
+					<li class="mui-table-view-cell">
+						<a class="mui-navigate-right">
+						<span class="mui-icon mui-icon-personadd"></span>
+							我的关注
+						</a>
+					</li>
+				</ul>
+		</div>
+		<script src="js/mui.min.js"></script>
+		<script type="text/javascript" charset="utf-8">
+		var aniShow = "slide-in-right";
+			mui.init({
+				keyEventBind: {
+					backbutton: false,
+					menubutton: false
+				}
+			});
+			//获得侧滑主窗口webview对象
+			var main = null;
+			mui.plusReady(function () {
+				main = plus.webview.currentWebview().opener();
+			})
+			function closeMenu () {
+				mui.fire(main,"menu:swipeleft");
+			}
+			//优化显示出来的侧滑菜单，只需监听该菜单的左滑事件，然后将其关闭即可；在菜单上右滑，不做任何操作；
+			window.addEventListener("swipeleft",closeMenu);  
+//			document.getElementById("close-btn").addEventListener('tap',closeMenu);
+			mui.menu = closeMenu;
+			
+			mui('.mui-table-view').on('tap', 'a', function() {
+				mui.toast("已点击！")
+				var id = this.getAttribute("href");
+				var type = this.getAttribute("open-type");
+				var href = this.href;
+				if(type=="common"||mui.os.ios){
+					var webview_style = {
+						popGesture: "close"
+					};
+					mui.openWindow({
+						id: id,
+						url: href,
+						styles: webview_style,
+						show: {
+							aniShow: aniShow
+						},
+						waiting: {
+							autoShow: false
+						}
+					});
+				}
+			});
+		</script>
+</body>
+
+</html>
