@@ -13,14 +13,20 @@
     		font-size: 62.5%;
     	}
     	.mui-bar-nav{
+    		position: fixed;
     		background-color: #f37564;
     	}
     	.mui-content{
+    		
     		margin:0 auto;
     		width: 20rem;
-    		min-height: 20rem;
+    		overflow: scroll;
+    		height: 100%;
     		background-color: #feeeec;
     		border: 1px solid gray;
+    	}
+    	.hide{
+    		display: none;
     	}
 		ul.func li{
 			width: 3rem;
@@ -30,8 +36,8 @@
 			display: inline-block;
 		}
 		span.username{
-			margin-top: 2rem;
-			margin-right: 10rem;
+			margin-top: 1.3rem;
+			margin-right: 13.3rem;
 		}
 		img.portrait{
     		margin-left: .5rem;
@@ -40,48 +46,57 @@
 			border-radius: 50%;
 		}
 		img.food{
-			margin:0 1rem ;
-			width: 10rem;
-			height: 8rem;
+			margin:1rem 1rem ;
+			width: 13rem;
+			height: 9rem;
 		}
 .remarkBox{
 	margin: .2rem auto;
 	width: 90%;
-	height: 3rem;
-	border: dashed;
+	height: 2.5rem;
+	border:1px palevioletred dashed;
 }
 .allremark{
 	width: 100%;
 	height: 9rem;
-	border: dashed;
+	
 }
 .allremarkBox{
-	border: 1px palevioletred dashed;
+	width: 100%;
+	height: 7.5rem;
+	padding-bottom: 1rem;
+	border-bottom: 1px palevioletred solid;
+	overflow: hidden;
+
 }
 ul.markfunc{
-	margin-top: -1rem;
+	margin-top: .8rem;
+	margin-right: 1rem;
 }
 ul.markfunc li{
 	display: inline-block;
+	margin-left: .3rem;
 }
 img.portrait{
-	width: 5rem;
-	height: 5rem;
+	margin: .5rem .8rem;
+	width: 3rem;
+	height: 3rem;
 	border-radius: 50%;
 }
 .marktime{
-	margin-top: -3.3rem;
-	margin-right: .4rem;
+	margin: -.5rem .3rem;
+	
 }
 .spanContain span{
-	margin-left: 2rem;
+	margin-left: 3rem;
+	color: cornflowerblue;
 	
 }
 p.rcontent{
-	margin-left: .8rem;
+	margin: -2rem 3rem;
 }
 p.descrip{
-	margin-left:  .8rem;
+	margin:.4rem  1.4rem;
 }
     </style>
     <script type="text/javascript" charset="utf-8">
@@ -89,50 +104,98 @@ p.descrip{
     </script>
 </head>
 <body>
-
+			<header class="mui-bar mui-bar-nav">
+		    <a class="mui-action-back mui-icon mui-icon-back mui-pull-left"></a>
+		    <h1 class="mui-title">动态详情</h1>
+		</header>	
 		<div class="mui-content">
+			<p id="test"></p>
 			<img class="portrait" src="img/portrait.jpg"/>
 			<span class="username mui-pull-right">baibai</span>
 			<br />
 			<p class="spanContain">
-			<span class="time">2015-9-14</span>
+			
 			<span class="hot">热度</span>
 			<span class="tag">标签</span>
+			<span class="time">2015-9-14</span>
 			</p>
 			
 			<p class="descrip">这个东西真好吃</p>
 				<img class="food" src="img/food.jpg"/>
 				<ul class="func">
-					<li><a href="#">点赞</a></li>
-					<li><a href="#">吐槽</a></li>
-					<li><a href="#">关注</a></li>
 					<li><a href="#">收藏</a></li>
+					
+					<li><a href="#">吐槽</a></li>
+					<li><a href="#">推荐</a></li>
+					<li><a href="#"><span class="mui-icon mui-icon-flag"></span></a></li>
+					
 				</ul>
 				
-			
-									
-									<input type="textarea" class="remarkBox" placeholder="你想说什么">
-								
+				
+				
+				
+				
+				
+				
+			  <div class="remarkContain">
+			  		<input type="textarea" class="remarkBox" placeholder="你想说什么">
+						<span class="mui-icon mui-icon-paperplane"></span>		
 				
 				<div class="allremark">
 					<div class="allremarkBox">
 					<img class="portrait" src="img/portrait.jpg"/>
 					
-						<span class="username mui-pull-right">用户名</span>
-					<span class="marktime mui-pull-right">评论时间</span>
+						<span class="username mui-pull-right">vivi</span>
+					
+					<span class="marktime mui-pull-left">2015-10-4 10:30</span>
+					
+						
 					
 					
-					<p class="rcontent">我也觉得</p>
+					<p class="rcontent mui-pull-left">我也觉得</p>
 					
 					<ul class="markfunc mui-pull-right">
-						<li><a href="#">点赞数</a><span class="complits">1</span></li>
+						<li><a href="#"><span class="mui-icon mui-icon-flag"></span></a><span class="complits">1</span></li>
+						<li><a href="#">回复</a></li>
+					</ul>
+					</div>
+					<div class="allremarkBox">
+					<img class="portrait" src="img/portrait.jpg"/>
+					
+						<span class="username mui-pull-right">vivi</span>
+					
+					<span class="marktime mui-pull-left">2015-10-4 10:30</span>
+					
+						
+					
+					
+					<p class="rcontent  mui-pull-left">我也觉得</p>
+					
+					<ul class="markfunc mui-pull-right">
+						<li><a href="#"><span class="mui-icon mui-icon-flag"></span></a><span class="complits">1</span></li>
 						<li><a href="#">回复</a></li>
 					</ul>
 					</div>
 					
 				</div>
+			  </div>
+									
+								
 				
 		</div>
 	
+	<script>
+	mui.plusReady(function(){
+				//添加newId自定义事件监听
+window.addEventListener('askData',function(event){
+  //获得事件参数
+  var id = event.detail.id;
+  //根据id向服务器请求新闻详情
+   console.log(id)
+	});
+
+  
+});
+	</script>
 </body>
 </html>
