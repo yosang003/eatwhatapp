@@ -1,0 +1,6 @@
+{
+"dynamic":[
+{"dynamicId":"1","shop":"私人蛋糕烘焙","portrait":"./img/portrait.jpg","username":"哟桑","date":"2015-5-2","descrip":"这个东西真好吃","food":"./img/food.jpg"},
+{"dynamicId":"2","shop":"vivi蛋糕店","portrait":"./img/portrait2.jpg","username":"摆摆","date":"2015-5-2","descrip":"这个东西真好吃","food":"./img/food2.jpg"}
+]
+}

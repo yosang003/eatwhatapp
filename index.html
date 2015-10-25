@@ -76,6 +76,9 @@
 			</nav>
 	<script type="text/javascript" src="js/mui.min.js"></script>
 	<script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+	
+	
+	
 	<script type="text/javascript">
 		var menu = null,
 		    main = null,
@@ -86,7 +89,7 @@
 			{
 			  url:"fabiao.html",
 			  id:"fabiao.html",
-			   zindex:-2
+			  zindex:-1
 			}
 		  ]
 		});
@@ -224,10 +227,29 @@
 			//tab页面切换
 			var activeTab=subpages[0];
 			mui('.mui-bar-tab').on('tap','a',function(event){
+				var objPage = null;
+				
 				var targetTab=this.getAttribute('href');
+				
+				var pageId=targetTab;//这里获取哪个页面的id以便向后台传数据
+				 
+				 
+				if(!objPage){
+					objPage=plus.webview.getWebviewById(pageId);
+				}
+				
 				if(targetTab==activeTab){
 					return;
 				}
+				
+				
+				//这里使用mui.fire函数
+				mui.fire(objPage,'getData',{
+					id:pageId
+				})
+				
+				
+				
 				//显示目标选项卡
 				if(mui.os.ios||aniShow[targetTab]){
 					plus.webview.show(targetTab)
@@ -258,7 +280,7 @@
 			//发表
 			document.getElementById('fabiao').addEventListener('tap', function() {
 					var fabiao=plus.webview.getWebviewById("fabiao.html");
-					fabiao.show('none');
+				fabiao.show('none');
 			})
 	</script>
 </body>

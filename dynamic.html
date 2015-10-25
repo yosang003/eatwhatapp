@@ -51,10 +51,9 @@
 			border-top: 1rem solid #ffdad6;
 		}
     </style>
-    <script src="js/template.js"></script>
 <body>
-	<div class="mui-content">
-			<div class="dynamic" id="1">
+	<div class="mui-content" id="dycontext">
+	<!--		<div class="dynamic" id="1">
 				<p class="store">私人蛋糕烘焙</p>
 				<img class="portrait" src="img/portrait.jpg"/>
 				<p class="namedContain mui-pull-right">
@@ -87,12 +86,30 @@
 				
 				<p class="descrip">这个东西真好吃</p>
 				<img class="food" src="img/food.jpg"/>
-			</div>
+			</div>-->
 		</div>
+		<script type="text/html" id="mytest">
+		     {{each dynamic as value i}} 
+		    		<div class="dynamic" id={value.dynamicId}}>
+						<p class="store">{{value.shop}}</p>
+						<img class="portrait" src="{{value.portrait}}"/>
+						<p class="namedContain mui-pull-right">
+							<span class="username">{{value.username}}</span>
+						<span class="date ">{{value.date}}</span>
+						</p>
+						
+						<p class="descrip">{{value.descrip}}</p>
+						<img class="food" src="{{value.food}}"/>
+					</div>
+		    {{/each}}
+		</script>
 </body>
-<script type="text/javascript" src="js/mui.min.js"></script>
+  <script type="text/javascript" src="js/mui.min.js"></script>
+   <script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+   <script type="text/javascript" src="js/template.js"></script>
+
 <script type="text/javascript">
-                mui.init();
+
 
 			       var index = null; //主页面
 			function openMenu() {
@@ -118,14 +135,6 @@
 		  
 });
 
-
-window.addEventListener("getData",function(){
-	var id=event.detail.id;
-	console.log(id);
-})
-
-
-
 var detailPage = null;
 //添加列表项的点击事件
 mui('.mui-content').on('tap', '.dynamic', function(e) {
@@ -139,16 +148,46 @@ mui('.mui-content').on('tap', '.dynamic', function(e) {
   mui.fire(detailPage,'askData',{
     id:id
   });
+
 //打开详情页面          
   mui.openWindow({
     id:'detail'
   });
 });
 
-
-
-
 			})
+			
+			
+			//获取当前页面数据并渲染
+			window.addEventListener('getData',function(event){
+		
+			  //获得事件参数
+			  var id = event.detail.id;
+			  //根据id向服务器请求新闻详情
+			  mui.ajax('testjson/dynamic.json',{
+				data:{
+					pageId:id
+					
+				},
+				dataType:'json',//服务器返回json格式数据
+				type:'post',//HTTP请求类型
+				timeout:10000,//超时时间设置为10秒；
+				success:function(data){
+					//服务器返回响应，根据响应结果，分析是否登录成功；
+					var myhtml="";
+					 myhtml+=template('mytest',data);
+//        			mui('#dycontext').innerHTML=myhtml;
+                    $('#dycontext').html(myhtml);
+					
+				},
+				error:function(xhr,type,errorThrown){
+					//异常处理；
+					console.log(type);
+				}
+});
+			   
+			   
+				});
 			
 			
 </script>
