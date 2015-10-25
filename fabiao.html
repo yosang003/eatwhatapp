@@ -13,27 +13,60 @@
 		</style>
 	</head>
 	<body>
-		<!--<header class="mui-bar mui-bar-nav">
-			  <a class="mui-icon mui-icon-left-nav mui-pull-left"></a>
+		<header class="mui-bar mui-bar-nav">
+			  <a class="mui-icon mui-icon-left-nav mui-pull-left mui-action-back"></a>
 			  <h1 class="mui-title">发表</h1>
-		</header>-->
+		</header>
 		<div class="mui-content">
 			<div class="mui-content-padded" style="margin: 10px;">
 				<p>在这里分享你发现的美食</p>
 				<div class="mui-input-row">
-					<textarea id="textarea" rows="5" placeholder="多行文本框"></textarea>
+					<textarea id="context" rows="5" placeholder="多行文本框"></textarea>
 				</div>
+				<span class="uploadbar"></span>
 				<img class="uploadImg" src="img/iconfont-tianjia.png" id="uploadBtn"/>
-				   <button type="button" class="mui-btn mui-btn-success mui-btn-block">Block button</button>
+				<button type="button" class="mui-btn mui-btn-success mui-btn-block" id="blog-post">Block button</button>
 			</div>
 		</div>
 		<script type="text/javascript" src="js/mui.min.js"></script>
 		<script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+		<script type="text/javascript" src='js/common.js'></script>
 		<script>
 			mui.init();
 			mui.plusReady(function(){
 				mui('body').on('tap','#uploadBtn',function(){
 					selectImg();
+				})
+				mui('body').on('tap',"#blog-post",function(){
+					//分别获取文字和图片的内容
+					var context=$('#context').val();
+					var photos=[];
+					$('.uploadbar img').each(function(i){
+						photos.push(
+							{
+								photo:$(this).Attr("data-src")
+							}
+						)
+					})
+					//判断发表的东西不为空
+					if($('.uploadbar img').length==0&&!context){
+						plus.nativeUI.alert("发表内容不能为空！");
+						return;
+					}
+					blog.add(context,photos,function(data){
+						plus.nativeUI.alert("yichenggong");
+						/*var dynamicPage = plus.webview.create("index.html",'index.html',{});
+						var objPage=plus.webview.getWebviewById("index.html");*/
+						var objPage=plus.webview.getLaunchWebview();
+						var curPage=plus.webview.currentWebview();
+						mui.fire(objPage,"getData",{
+							id:"success"
+						})
+						objPage.show();
+						curPage.hide();
+						
+
+			        });
 				})
 			})
 			
@@ -56,9 +89,15 @@
 				})
 			}
 			function getGallery(){
-				plus.gallery.pick(function(file){
+				plus.gallery.pick(function(path){
 					//输出图片路径
-					console.log(file);
+					lrz(path,{
+						width:600,
+						done:function(results){
+							//需要的数据都在results里
+							upload(results.base64);
+						}
+					})
 				},function(err){
 					console.log("wrong")
 				})
@@ -77,6 +116,18 @@
 				 format:fmt
 				 }
 			  );
+			}
+			function upload(imgstr){
+				if(!imgstr){
+					plus.nativeUI.alert("没有添加上传文件！");
+				    return;
+				}
+				system.upload(imgstr,function(data){
+					//上传成功后显示图片实现预览
+					var html=$('.uploadbar').html();
+					html += '<img class="imgitem" src="img/1px.png" style="background: url('+data.img +') no-repeat center;background-size:auto 100%; />';
+					$('.uploadbar').html(html);
+				})
 			}
 		</script>
 	</body>

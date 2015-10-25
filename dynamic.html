@@ -92,7 +92,7 @@
 </body>
 <script type="text/javascript" src="js/mui.min.js"></script>
 <script type="text/javascript">
-
+                mui.init();
 
 			       var index = null; //主页面
 			function openMenu() {
@@ -114,9 +114,17 @@
 		
 	var page = mui.preload({
 		    url:'detail.html',
-		    id:'detail'
+		    id:'detail.html'
 		  
 });
+
+
+window.addEventListener("getData",function(){
+	var id=event.detail.id;
+	console.log(id);
+})
+
+
 
 var detailPage = null;
 //添加列表项的点击事件
@@ -131,7 +139,6 @@ mui('.mui-content').on('tap', '.dynamic', function(e) {
   mui.fire(detailPage,'askData',{
     id:id
   });
-console.log(id)
 //打开详情页面          
   mui.openWindow({
     id:'detail'
